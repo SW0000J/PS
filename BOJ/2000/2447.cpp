@@ -15,6 +15,7 @@ void draw(const int& N, int a, int b) {
 	}
 }
 
+// hard to Draw Stars...
 int main() {
 	ios::sync_with_stdio(false);
 	cout.tie(NULL);

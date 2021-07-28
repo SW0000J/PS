@@ -1,6 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <vector>
+#include <cmath>
 using namespace std;
 
 int main() {
@@ -15,12 +16,26 @@ int main() {
 		cin >> nameV[i];
 	}
 
+	vector<pair<long long, long long>> binaryV(20);
 	long long ans = 0;
 
-	//time over error
-	for (int i = 0; i < N - 1; i++) {
-		for (int j = i + 1; j < N; j++) {
-			ans += nameV[i] ^ nameV[j];
+	for (long long i = 0; i < nameV.size(); i++) {
+		for (long long j = 0; j < binaryV.size(); j++) {
+			if (nameV[i] & (1 << j)) {
+				binaryV[j].second++;
+			}
+			else {
+				binaryV[j].first++;
+			}
+		}
+
+		for (long long j = 0; j < binaryV.size(); j++) {
+			if (nameV[i] & (1 << j)) {
+				ans += binaryV[j].first * (1 << j);
+			}
+			else {
+				ans += binaryV[j].second * (1 << j);
+			}
 		}
 	}
 
